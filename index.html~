@@ -188,6 +188,7 @@
 				localStorage.setItem("code", $("#command_input").val());
 			})
 			$("#command_input").keydown((e) => {
+				console.log(e.ctrlKey,e.keyCode)
 				if(e.ctrlKey && e.keyCode == 13) {
 					e.preventDefault();
 					var command = $("#command_input").val();

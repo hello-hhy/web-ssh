@@ -28,7 +28,7 @@ def index():
 	
 @app.route("/history/", methods=["GET"])
 def his():
-	return {"list": history, "ip": request.remote_addr}
+	return {"list": history}
 
 @app.route("/vue.js")
 def vue():
