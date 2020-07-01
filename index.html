@@ -133,10 +133,10 @@
 		<div class="debugger">
 			<div  class="traceback" id="traceback">
 				<pre id="console" class="console"><form id="console_form"> <textarea id="command_input" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style='padding: 10px; border:0;height: 100px;padding: 10px;resize: none; max-width: 95%; width: 95%; min-width: 95%; margin-top: 1px; margin: 0px 0px; font-family: "Fira Mono","Monaco","Menlo","Ubuntu Mono","Consolas","source-code-pro",monospace;'></textarea></form></pre>
-				<div v-for="c in his">
+				<div v-for="(c, i) in his">
 					<div v-if="c.command">
 						<code>
-							<pre class="command"><span v-if="ip != c.ip">[ {{c.ip}} ] : </span>{{c.command}}</pre>
+							<pre class="command" v-bind:id="'cmd_'+i.toString()"><span v-if="ip != c.ip">[ {{c.ip}} ] : </span> {{c.command}}</pre>
 						</code>
 					</div>
 					<div v-if="c.err">
@@ -172,6 +172,9 @@
 								this.ip = data.ip;
 							}
 						})
+						$(".command").click((e) => {
+							console.log($(e));
+						});
 					}
 				}
 			})
@@ -181,12 +184,11 @@
 				}
 				setInterval(()=>{
 					app.update()
-				}, 300)
-				
-			}
+				}, 300);
+			};
 			$("#command_input").keyup((e) => {
 				localStorage.setItem("code", $("#command_input").val());
-			})
+			});
 			$("#command_input").keydown((e) => {
 				if(e.ctrlKey && e.keyCode == 13) {
 					e.preventDefault();
@@ -209,7 +211,7 @@
 					return false;
 				}
 				return true;
-			})
+			});
 		</script>
 	</body>
 </html>
