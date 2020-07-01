@@ -12,7 +12,6 @@ def api():
 		proc.wait()
 		str_stdout = proc.stdout.read().decode()
 		str_stderr = proc.stderr.read().decode()
-		print(dir(request))
 		result = {"std":str_stdout, "err":str_stderr, "command": request.form.get('command'), "ip": request.remote_addr}
 		history.append(result)
 		while(len(history) > 100): history.pop(0)
